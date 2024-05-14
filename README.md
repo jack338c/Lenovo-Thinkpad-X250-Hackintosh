@@ -1,11 +1,11 @@
 <p align="center">
- <img src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/blob/Opencore/screenshot/Banner.webp" align="center" alt="ROG-STRIX-G513QC" />
+ <img src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/raw/Opencore/screenshot/Banner.webp" align="center" alt="ROG-STRIX-G513QC" />
  <h2 align="center">Lenovo ThinkPad X250</h2>
  <p align="center">OpenCore Config for Lenovo ThinkPad X250 🍏</p>
 
 <br><br>
 
-<img src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/blob/Opencore/screenshot/Screenshot%202024-02-14%20at%2018.19.56.png" alt="img" align="right" width="350px">
+<img src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/raw/Opencore/screenshot/Screenshot%202024-02-14%20at%2018.19.56.png" alt="img" align="right" width="350px">
 <br/><br/>
 
 ## Disclaimer ⚠️
@@ -29,25 +29,48 @@ This EFI is based in [olarila](https://olarila.com/files/OPENCORE1/EFI.Opencore.
 <p align="center">
   <kbd><br>V E N T U R A 13.6.4
   <br><br>
-  <kbd><img src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/blob/Opencore/screenshot/Screenshot%202024-02-14%20at%2005.50.22.png"/></kbd></kbd>
+  <kbd><img src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/raw/Opencore/screenshot/Screenshot%202024-02-14%20at%2005.50.22.png"/></kbd></kbd>
   <br><br>
 
 > [!Warning]
 > When installing or updating the system, be sure to make sure and replace some kext that matches your macOS version, otherwise, some components will not run properly.
+<br>
 
-<a href="https://github.com/zamprjkt/Lenovo-Thinkpad-X250-Hackintosh/releases" target="blank"><img align="left" width="300px" src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/blob/Opencore/screenshot/download.svg" /></a>
+<a href="https://github.com/zamprjkt/Lenovo-Thinkpad-X250-Hackintosh/releases" target="blank"><img align="left" width="300px" src="https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh/raw/Opencore/screenshot/download.svg" /></a>
 Download the MacOS installation at the following link, [`Download Here`](https://www.olarila.com/topic/6278-new-vanilla-olarila-images/), Or download it from the macOS terminal directly by following this guide [`osxdaily`](https://osxdaily.com/2020/04/13/how-download-full-macos-installer-terminal/)
-
 <br><br>
-## MacOS
+
+## ☑️ Tested
+- sonoma (Tested, OpenCore, 8GB ram is highly discouraged)
 - Ventura (Tested, OpenCore)
 - Monterey (Tested, OpenCore)
 - Bigsur (Tested, OpenCore)
-> AirpoAirportitwlm needs to be replaced according to the OS version used, the latest airportitwlm default is Ventura.
-> To download Airportitwlm [`click here`](https://github.com/OpenIntelWireless/itlwm/releases)
+
+## 🎒 Installation guide
+
+### Monterey and below
+- Clone this repo through the terminal.
+
+    ```
+    git clone https://github.com/zamkara/Lenovo-Thinkpad-X250-Hackintosh.git
+    ```
+- Download *Wireless Kernel Extension* from [Bluetooth](https://github.com/OpenIntelWireless/IntelBluetoothFirmware) & [itlwm](https://github.com/OpenIntelWireless/itlwm) then place it in the `$source/EFI/OC/Kexts` directory, be sure to download Airportitlwm for the appropriate macOS version or use itlwm for all macOS versions.
+- Update the config to register the kext that was added to the folder using [OCAuxiliaryTools](https://github.com/ic005k/OCAuxiliaryTools) or [Opencore configurator](https://mackie100projects.altervista.org/download-opencore-configurator/).
+- Place the EFI on the EFI Bootable partition of the macOS installer that was prepared earlier.
+### Ventura and above
 
 
-# Bios
+- The EFI I built cannot boot (used for installing the OS) on Ventura and later versions. It will only work when the system is patched using [OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher). For the OS installation, you will need a different EFI from [Olarila](https://olarila.com).
+
+- Download the [Olarila EFI](https://olarila.com/files/OPENCORE1/EFI.Opencore.NoteBook.Broadwell.zip) and add the Kexts from the released EFI in this repository. Don't forget to change the SMBIOS Model to a 2019 model or any other supported model.
+
+- Perform the OS installation using the customized EFI, and apply the patch using [OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher). Once done, replace the EFI with the one you can clone from this repository.
+- After patching you can use the EFI from this repo for more functionality.
+
+> You may encounter problems when granting certain permissions to apps on Ventura or above, I suggest you use [Allowme](https://github.com/zamkara/Allowme).
+
+## Bios setup
+
 - `Security -> Security Chip`: **Disabled**;
 - `Memory Protection -> Execution Prevention`: **Enabled**;
 - `Virtualization -> Intel Virtualization Technology`: **Enabled**;
